@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="transit.TransitController">
+   <Tab closable="false" text="Feature 1">
+      <VBox prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <MenuBar prefHeight="25.0" prefWidth="120.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#importFiles" text="Import GTFS Files" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <HBox prefHeight="775.0" prefWidth="1000.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="500.0">
+                     <children>
+                        <Label text="Stops">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="allStopsTextArea" editable="false" minHeight="340.0" minWidth="490.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font></TextArea>
+                        <Label text="Trips">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font></Label>
+                        <TextArea fx:id="allTripsTextArea" editable="false" minHeight="340.0" minWidth="490.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font></TextArea>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="500.0">
+                     <children>
+                        <Label text="Stop Times">
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font></Label>
+                        <TextArea fx:id="allStopTimesTextArea" editable="false" minHeight="340.0" minWidth="490.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font></TextArea>
+                        <Label text="Routes">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font></Label>
+                        <TextArea fx:id="allRoutesTextArea" editable="false" minHeight="340.0" minWidth="490.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font></TextArea>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </Tab>
+   <Tab id="tab_F2" fx:id="tab_F2" closable="false" disable="true" text="Feature 2">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Trip Distances">
+                  <padding>
+                     <Insets left="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="textArea_F2" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Button fx:id="tripDistanceButton_F2" mnemonicParsing="false" onAction="#displayAllTripDistances" prefHeight="50.0" text="Calculate Trip Distances">
+                  <VBox.margin>
+                     <Insets left="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Button>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F3" fx:id="tab_F3" closable="false" disable="true" text="Feature 3">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Average Trip Speeds">
+                  <padding>
+                     <Insets left="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="textArea_F3" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Button fx:id="tripSpeedButton_F3" mnemonicParsing="false" onAction="#displayAllTripSpeeds" prefHeight="50.0" text="Calculate Average Trip Speeds">
+                  <VBox.margin>
+                     <Insets left="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Button>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F4" fx:id="tab_F4" closable="false" disable="true" text="Feature 4">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Number of Trips per Stop">
+                  <padding>
+                     <Insets left="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="tripsPerStopTextArea" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Button fx:id="tripsPerStopButton" mnemonicParsing="false" onAction="#displayNumTripsPerStop" prefHeight="50.0" text="Calculate Number of Trips per Stop">
+                  <VBox.margin>
+                     <Insets left="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Button>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F5" fx:id="tab_F5" closable="false" disable="true" text="Feature 5">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Routes Containing Stop">
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="5.0" top="5.0" />
+                  </VBox.margin>
+               </Label>
+               <TextArea fx:id="textArea_F5" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Label text="Search">
+                  <padding>
+                     <Insets left="5.0" />
+                  </padding>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin>
+               </Label>
+               <HBox prefHeight="100.0" prefWidth="200.0">
+                  <children>
+                     <TextField fx:id="stopSearchBar_F5" maxHeight="26.0" maxWidth="300.0" minHeight="26.0" minWidth="300.0" onAction="#routesContainingStopSearch" promptText="Enter a valid stop_id">
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                     </TextField>
+                     <Button fx:id="stopSearchButton_F5" maxWidth="125.0" minWidth="125.0" mnemonicParsing="false" onAction="#routesContainingStopSearch" text="Search">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="14.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F8" fx:id="tab_F6" closable="false" disable="true" text="Feature 6">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="All Stops Along Route">
+                  <VBox.margin>
+                     <Insets left="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="textArea_F6" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Label text="Search">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <HBox prefHeight="30.0" prefWidth="200.0">
+                  <children>
+                     <TextField fx:id="routeSearchBar_F6" maxHeight="26.0" maxWidth="300.0" minHeight="26.0" minWidth="300.0" onAction="#routeSearchButton_F6" promptText="Enter a valid route_id">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                     </TextField>
+                     <Button fx:id="routeSearchButton_F6" maxWidth="125.0" minWidth="125.0" mnemonicParsing="false" onAction="#routeSearchButton_F6" text="Search">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="14.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F8" fx:id="tab_F8" closable="false" disable="true" text="Feature 8">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Upcoming Trips">
+                  <VBox.margin>
+                     <Insets left="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="textArea_F8" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Label text="Search">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font></Label>
+               <HBox prefHeight="30.0" prefWidth="200.0">
+                  <children>
+                     <TextField fx:id="stopSearchBar_F8" maxHeight="26.0" maxWidth="300.0" minHeight="26.0" minWidth="300.0" onAction="#upcomingTripsSearch" promptText="Enter a valid stop_id">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                     </TextField>
+                     <Button fx:id="stopSearchButton_F8" maxWidth="125.0" minWidth="125.0" mnemonicParsing="false" onAction="#upcomingTripsSearch" text="Search">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="14.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </HBox>
+            </children></VBox>
+      </content>
+   </Tab>
+   <Tab id="tab_F12" fx:id="tab_F12" closable="false" disable="true" text="Feature 12">
+      <content>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Trips in Trip Group">
+                  <VBox.margin>
+                     <Insets left="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+               </Label>
+               <TextArea fx:id="textArea_F12" editable="false" minHeight="500.0" minWidth="990.0">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+               </TextArea>
+               <Label text="Search">
+                  <font>
+                     <Font name="Arial" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
+                  </VBox.margin>
+               </Label>
+               <HBox prefHeight="30.0" prefWidth="200.0">
+                  <children>
+                     <TextField fx:id="stopSearchBar_F12" maxHeight="26.0" maxWidth="300.0" minHeight="26.0" minWidth="300.0" onAction="#searchButton_F12" promptText="Enter a valid trip_id">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="12.0" />
+                        </font>
+                     </TextField>
+                     <Button fx:id="stopSearchButton_F12" maxWidth="125.0" minWidth="125.0" mnemonicParsing="false" onAction="#searchButton_F12" text="Search">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="Arial" size="14.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="updateTripsButton_F12" maxHeight="26.0" maxWidth="125.0" minHeight="26.0" minWidth="125.0" mnemonicParsing="false" onAction="#tripGroupUpdate" text="Update Trips">
+                        <font>
+                           <Font name="Arial" size="14.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </content>
+   </Tab>
+</TabPane>

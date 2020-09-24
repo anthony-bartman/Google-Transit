@@ -1,0 +1,134 @@
+//	/**
+//	 * All Trips with a certain Stop (specified by stop_id) are returned if and only if the arrival time of the
+//	 * first StopTime in their stop sequence is later than the current system time.
+//	 *
+//	 * Regex time formatting:
+//	 * https://stackoverflow.com/questions/8318236/regex-pattern-for-hhmmss-time-string
+//	 *
+//	 * @param stopID ID used to identify a group of Trips (all Trips that contain this Stop)
+//	 * @return list of Trips closest to current system time by start time
+//	 * @author Anthony Bartman
+//	 */
+//	public ArrayList<Trip> findUpcomingTrips(String stopID){
+//		//create a list to hold all Trips found to be in the near future
+//		ArrayList<Trip> upcomingTrips = new ArrayList<>();
+//
+//		//validate that the specified stop_id is connected to an existing Stop
+//		Stop searchedStop = transitData.searchStops(stopID);
+//
+//		if(searchedStop != null){
+//			//obtain the current system time
+//			LocalTime currentTime = LocalTime.now();
+//
+//			//obtain all Trips that have the specified Stop
+//			ArrayList<Trip> tripsWithStop = new ArrayList<>();
+//
+//			//iterate over every known Trip, checking for the specified Stop
+//			for(Trip trip : allTrips){
+//				//obtain the list of StopTimes for a single Trip (signifying which Stops are in a single Trip)
+//				ArrayList<StopTime> stopSequence = trip.getStopSequence();
+//
+//				//iterate over every StopTime object, checking if the requested stop_id is in the Trip
+//				for(StopTime stopTime : stopSequence){
+//					if(stopTime.getStopID().equals(stopID)){
+//						//we have found a stop_id that matches the requested stop_id, hold onto this Trip
+//						tripsWithStop.add(trip);
+//					}
+//				}
+//			}
+//
+//			//iterate over every Trip with the specified Stop
+//			for(Trip trip : tripsWithStop){
+//				//iterate over every StopTime in a Trip
+//				ArrayList<StopTime> stopSequence = trip.getStopSequence();
+//
+//				/*
+//				 * Obtain the time at which this Trip reaches the Stop of interest. Initializing the StopTime related
+//				 * to the Stop of interest to "null" is safe in this case because it has already been verified that
+//				 * all of the Trips in "tripsWithStop" contain the Stop specified by the user.
+//				 */
+//				StopTime stopTimeOfInterest = null;
+//				for(StopTime stopTime : stopSequence){
+//					if(stopTime.getStopID().equals(stopID)){
+//						stopTimeOfInterest = stopTime;
+//					}
+//				}
+//				//format the time that the Trip arrives at the specified Stop
+//				LocalTime stopArrivalTime = formatTime(stopTimeOfInterest.getArrivalTime());
+//
+//				//check if the arrival time of the matching Stop in the Trip is after the current system time
+//				if(stopArrivalTime.isAfter(currentTime)){
+//					//this Trip reaches the current stop in the future, therefore return this Trip
+//					upcomingTrips.add(trip);
+//				}
+//			}
+//
+//			//arrange all Trips by closest to current system time to furthest from system time
+//			//Arranges all trips by closest to current time
+////			if (upcomingTrips.size() > 1) {
+////				upcomingTrips = arrangeTrips(upcomingTrips, arrivalTimes, timeToSecond(currentTime.toString()));
+////			}
+//		} else {
+//			//notify the user that they entered an invalid stop_id
+//			Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+//			errorAlert.setTitle("Invalid Stop ID");
+//			errorAlert.setHeaderText("Stop was not found");
+//			errorAlert.setContentText("No Stop associated with the following stop_id: " + stopID);
+//			errorAlert.showAndWait();
+//		}
+//		return upcomingTrips;
+//	}
+
+
+
+
+	/**
+	 * TODO: implement this method
+	 * This method rearranges a set of Trips so that they are in order from closest to current time to farthest from
+	 * current time.
+	 *
+	 * @param trips list of Trips to be sorted by start time
+	 * @param currentTime current system time
+	 * @return list of Trips sorted by start time (closest to current system time)
+	 * @author Anthony Bartman
+	 */
+	private ArrayList<Trip> arrangeTrips(ArrayList<Trip> trips, ArrayList<Integer> arrTimes, int currentTime) {
+		ArrayList<Trip> newTripList = new ArrayList<>();
+		int lowestTime = Integer.MAX_VALUE;
+		int totalTrips = trips.size();
+
+		while(totalTrips != 0) {
+			int indexOfLT = -1; //Will select which index use
+			for (int i = 0; i < arrTimes.size(); i++) {
+				int difference = arrTimes.get(i) - currentTime;
+				if(lowestTime >= difference){
+					lowestTime = difference;
+					indexOfLT = i;
+				}
+			}
+			//Adds the trips to the new ordered trip list
+			newTripList.add(trips.get(indexOfLT));
+			totalTrips--;
+			arrTimes.remove(indexOfLT);
+		}
+		return newTripList;
+	}
+
+	/**
+	 * This method will format a string time into a correctly formatted local time object.
+	 *
+	 * @param time String to be formatted
+	 * @return Formatted Local time object, "hh:mm:ss"
+	 * @author Anthony Bartman
+	 */
+	private LocalTime formatTime(String time){
+		LocalTime formattedTime;
+
+		//Makes sure String time matches "HH:MM:SS"
+		if (time.matches("^([1-2]\\d)(?::([0-5]?\\d))?(?::([0-5]?\\d))?$")) {
+			formattedTime = LocalTime.parse(time, DateTimeFormatter.ISO_LOCAL_TIME);
+		} else {
+			formattedTime = LocalTime.parse("0" + time, DateTimeFormatter.ISO_LOCAL_TIME);
+		}
+		return formattedTime;
+	}
